@@ -5,14 +5,12 @@ import tensorflow as tf
 from PIL import Image
 
 # Subir modelos
+@st.cache_resource
 def load_models():
-    with open("cnn2.pkl", "rb") as f1, \
-         open("vgg162.pkl", "rb") as f2, \
-         open("mobilnet2.pkl", "rb") as f3:
-        model_baseline = pickle.load(f1)
-        model_vgg16 = pickle.load(f2)
-        model_mobilenet = pickle.load(f3)
-    return model_baseline, model_vgg16, model_mobilenet
+    model1 = tf.keras.models.load_model("baseline_model.h5")
+    model2 = tf.keras.models.load_model("vgg16_model.h5")
+    model3 = tf.keras.models.load_model("mobilenet_model.h5")
+    return model1, model2, model3
 
 model_baseline, model_vgg16, model_mobilenet = load_models()
 
