@@ -4,12 +4,12 @@ import tensorflow as tf
 from PIL import Image
 
 # Subir modelos
-@st.cache_resource
-def load_models():
-    model1 = tf.keras.models.load_model("baseline_model.h5")
-    model2 = tf.keras.models.load_model("vgg16_model.h5")
-    model3 = tf.keras.models.load_model("mobilenet_model.h5")
-    return model1, model2, model3
+picklefile = open("cnn2.pkl", "rb")
+model_baseline = pickle.load(picklefile)
+picklefile = open("vgg162.pkl", "rb")
+model_vgg16 = pickle.load(picklefile)
+picklefile = open("mobilnet2.pkl", "rb")
+model_mobilenet = pickle.load(picklefile)
 
 etiquetas = ["Angular Leaf Spot", "Bean Rust", "Healthy"]
 
@@ -32,9 +32,6 @@ if img:
     input_baseline = preprocess(img, (180, 180))
     input_vgg16 = preprocess(img, (180, 180))
     input_mobilenet = preprocess(img, (128, 128))
-
-    # Modelos
-    model_baseline, model_vgg16, model_mobilenet = load_models()
 
     if st.button("Predict"):
         # Predicciones
