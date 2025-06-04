@@ -14,8 +14,7 @@ model_mobilenet = pickle.load(picklefile)
 etiquetas = ["Angular Leaf Spot", "Bean Rust", "Healthy"]
 
 st.title("Bean leaf clasification 🌱🫘")
-st.write("Classify with Baseline CNN, VGG16 and MobileNetV2")
-
+st.write("Upload an image to predict its category")
 img = st.file_uploader("Enter an image", type=["jpg", "png", "jpeg"])
 
 if img:
@@ -33,11 +32,11 @@ if img:
     input_vgg16 = preprocess(img, (180, 180))
     input_mobilenet = preprocess(img, (128, 128))
 
+    # Predicciones
     if st.button("Predict"):
-        # Predicciones
-        pred_base = model_baseline.predict(input_baseline)[0]
-        pred_vgg = model_vgg16.predict(input_vgg16)[0]
-        pred_mobile = model_mobilenet.predict(input_mobilenet)[0]
+        pred_base = model_baseline.predict(input_baseline)
+        pred_vgg = model_vgg16.predict(input_vgg16)
+        pred_mobile = model_mobilenet.predict(input_mobilenet)
 
         st.subheader("Results of each model")
         cols = st.columns(3)
