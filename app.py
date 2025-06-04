@@ -34,9 +34,9 @@ if img:
 
     # Predicciones
     if st.button("Predict"):
-        pred_base = model_baseline.predict(input_baseline)
-        pred_vgg = model_vgg16.predict(input_vgg16)
-        pred_mobile = model_mobilenet.predict(input_mobilenet)
+        pred_base = model_baseline.predict(input_baseline)[0]
+        pred_vgg = model_vgg16.predict(input_vgg16)[0]
+        pred_mobile = model_mobilenet.predict(input_mobilenet)[0]
 
         st.subheader("Results of each model")
         cols = st.columns(3)
