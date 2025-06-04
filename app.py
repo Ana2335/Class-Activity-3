@@ -5,6 +5,7 @@ import tensorflow as tf
 from PIL import Image
 
 # Subir modelos
+@st.cache_resource
 picklefile = open("cnn2.pkl", "rb")
 model_baseline = pickle.load(picklefile)
 picklefile = open("vgg162.pkl", "rb")
