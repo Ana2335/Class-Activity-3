@@ -5,13 +5,16 @@ import tensorflow as tf
 from PIL import Image
 
 # Subir modelos
-@st.cache_resource
-picklefile = open("cnn2.pkl", "rb")
-model_baseline = pickle.load(picklefile)
-picklefile = open("vgg162.pkl", "rb")
-model_vgg16 = pickle.load(picklefile)
-picklefile = open("mobilnet2.pkl", "rb")
-model_mobilenet = pickle.load(picklefile)
+def load_models():
+    with open("cnn2.pkl", "rb") as f1, \
+         open("vgg162.pkl", "rb") as f2, \
+         open("mobilnet2.pkl", "rb") as f3:
+        model_baseline = pickle.load(f1)
+        model_vgg16 = pickle.load(f2)
+        model_mobilenet = pickle.load(f3)
+    return model_baseline, model_vgg16, model_mobilenet
+
+model_baseline, model_vgg16, model_mobilenet = load_models()
 
 etiquetas = ["Angular Leaf Spot", "Bean Rust", "Healthy"]
 
